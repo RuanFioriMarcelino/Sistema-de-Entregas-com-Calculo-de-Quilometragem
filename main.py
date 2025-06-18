@@ -44,18 +44,30 @@ def option_Two():
         print(len(products),"Produtos encontrados! ")
     print("")
 
-    for id, produto in products.items():
-        produto = products[id]
-        print(f"Produto: {id}\n Nome: {produto['nome']}\n Peso: {produto['peso']}\n Altura: {produto['altura']}\n Largura: {produto['largura']}\n Profundidade: {produto['profundidade']}\n")
-    
-    
+    for id, product in products.items():
+        product = products[id]
+        print(f"Código do product: {id}\n Nome: {product['nome']}\n Peso: {product['peso']}\n Altura: {product['altura']}\n Largura: {product['largura']}\n Profundidade: {product['profundidade']}\n")
     menu()
 
 
-
 def option_Three():
-    pass
-''
+    distance = float(input("Digite a distância do percurso em Km: "))
+    nmrProduct = int(input("Digite o código do produto a ser calculado o frete: "))
+    product = products.get(nmrProduct)
+
+    if nmrProduct in products:
+        print("Produto encontrado!")
+        a = float(product['altura'])
+        l = float(product['largura'])
+        c = float(product['profundidade'])
+        w = float(product['peso'])
+
+        area = 2 * (c*l + c*a + l*a)
+        print('Area', area)
+
+    elif nmrProduct not in products:
+        print("Produto não encontrado! Tente novamente")
+        option_Three()
 
 while True:
     print("_"*93)
