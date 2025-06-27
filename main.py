@@ -1,17 +1,8 @@
-""" 
-• Cadastro e visualização de produtos.
-• Cadastro de entregas com cálculo da distância percorrida.
-• Cálculo automático do valor médio gasto por quilometragem.
-• Verificações com condicionais if para evitar erros como campos
-vazios ou dados incorretos.
-• Uso de laços while e for para percorrer listas de produtos e
-entregas, automatizando os cálculos e exibições.
-"""
-
 products = {}
+stop = True
 
 def menu():
-    option = int(input("O que você deseja realizar?\n\n1 - Para cadastrar um produto\n2 - Para visualizar os produtos\n3 - Para calcular uma entrega\n"))
+    option = int(input("O que você deseja realizar?\n\n1 - Para cadastrar um produto\n2 - Para visualizar os produtos\n3 - Para calcular uma entrega\n4 - Para sair do programa\n"))
     print('')
     if option == 1:
         option_One()
@@ -19,12 +10,22 @@ def menu():
         option_Two()
     elif option == 3:
         option_Three()
+    elif option == 4:
+        option_Four()
     else:
         print("Opção digitada é inválida, tente novamente!\n")
         menu()
     return option
 
 def option_One():
+    back = input("Você deseja voltar para o menu? S - Voltar / N - Continuar\n").upper()
+    if back == "S":
+        menu()
+    elif back == "N":
+        pass
+    else:
+        print("Opção inválida. Tente novamente!")
+        option_One()
     name = input("Qual nome do produto a ser cadastrado? ").strip()
     weight = input("Digite o peso do produto em Kg: ").strip()
     height = input("Digite a altura do produto em CM: ").strip()
@@ -90,6 +91,16 @@ def calcular_frete(peso, altura, largura, profundidade):
         return 80.00
 
 def option_Three():
+    back = input("Você deseja voltar para o menu? S - Voltar / N - Continuar\n").upper()
+
+    if back == "S":
+        menu()
+    elif back == "N":
+        pass
+    else:
+        print("Opção inválida. Tente novamente!")
+        option_Three()
+        
     distance = input("Digite a distância do percurso em Km: ").strip()
     nmrProduct = input("Digite o código do produto a ser calculado o frete: ").strip()
 
@@ -131,9 +142,13 @@ def option_Three():
 
     menu()
 
-while True:
+def option_Four():
+    stop = False
+    print("Programa encerrado com sucesso!")
+    return stop    
+
+while stop:
     print("_"*93)
     print("Seja Bem-Vindo ao Sistema de Entregas com Informações de Produtos e Cálculo de Quilometragem!")
     print("_"*93,"\n")
     menu()
-    break
